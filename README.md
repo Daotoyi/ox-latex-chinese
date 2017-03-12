@@ -1,56 +1,70 @@
-- [README](#readme)
-  - [简介](#简介)
-  - [下载并安装 Texlive](#下载并安装-texlive)
-    - [下载 Tex Live ISO 镜像](#下载-tex-live-iso-镜像)
-    - [挂载已经下载的 ISO 镜像](#挂载已经下载的-iso-镜像)
-    - [运行安装程序](#运行安装程序)
-    - [设置安装参数](#设置安装参数)
-    - [安装所需要的 Latex 宏包](#安装所需要的-latex-宏包)
-  - [安装并配置 ox-latex-chinese](#安装并配置-ox-latex-chinese)
-    - [安装](#安装)
-    - [配置](#配置)
-  - [设置 LaTeX 片断预览功能](#设置-latex-片断预览功能)
-  - [常见错误排查和解决](#常见错误排查和解决)
-    - [中文目录下的 org 文件无法转换为 pdf 文件](#中文目录下的-org-文件无法转换为-pdf-文件)
-    - [缺少必要的 Latex 宏包](#缺少必要的-latex-宏包)
+- [README](#org3935f21)
+  - [简介](#orgf25b913)
+  - [下载并安装 Texlive](#orgc936b53)
+    - [下载 Tex Live ISO 镜像](#orgec78820)
+    - [挂载已经下载的 ISO 镜像](#org33b1e44)
+    - [运行安装程序](#org1eef640)
+    - [设置安装参数](#org0f38022)
+    - [安装所需要的 Latex 宏包](#orgd9344a5)
+  - [安装并配置 ox-latex-chinese](#org67d0566)
+    - [安装](#orga97ed7e)
+    - [配置](#orgae8e008)
+  - [设置 LaTeX 片断预览功能](#orgd9eb6ec)
+  - [常见错误排查和解决](#org128755e)
+    - [中文目录下的 org 文件无法转换为 pdf 文件](#orgf3d577d)
+    - [缺少必要的 Latex 宏包](#org189de36)
 
-# README<a id="orgheadline19"></a>
 
-## 简介<a id="orgheadline1"></a>
+<a id="org3935f21"></a>
 
-ox-latex-chinese 是一个 org-mode 工具，它可以帮助 org-mode 中文用户简单快速的配置 "org->latex->pdf" 工作环境。
+# README
 
-注意， 这个工具只是让 中文 pdf **基本正确** 的生成，如果你需要生成 **完美** 的中文 pdf，就需要花时间深入的了解下面工具：
+
+<a id="orgf25b913"></a>
+
+## 简介
+
+ox-latex-chinese 是一个 org-mode 工具，它可以帮助 org-mode 中文用户简单快速的 配置 "org->latex->pdf" 工作环境。
+
+注意， 这个工具只是让 中文 pdf **基本正确** 的生成，如果你需要生成 **完美** 的中文 pdf， 就需要花时间深入的了解下面工具：
 
 1.  TeX 系统，比如：TexLive
 2.  Ctex 宏包以及其相关工具（实现中文 LaTeX 的主要方式）
 3.  ox-latex.el (org-mode 的 Latex 导出模块)
 
-另外需要用户了解的问题是：TeX 的引擎有许多种类，比如： pdftex, xetex 或者 luatex,
-每一种引擎都有特殊的中文设置，ox-latex 可以通过设置来支持上述所有 TeX 引擎,
-而 ox-latex-chinese **硬绑定** 到 xetex, **只支持 xetex** , 因为 xetex 可以通过 xft 来调用系统中的字体，中文配置比较容易，但 xetex 生成 pdf 的速度比较慢，
-**我在这里告诉大家，不要因为 ox-latex-chinese 的方便而限制了自己的思路！**
+另外需要用户了解的问题是：TeX 的引擎有许多种类，比如： pdftex, xetex 或者 luatex, 每一种引擎都有特殊的中文设置，ox-latex 可以通过设置来支持上述所有 TeX 引擎, 而 ox-latex-chinese **硬绑定** 到 xetex, **只支持 xetex** , 因为 xetex 可以 通过 xft 来调用系统中的字体，中文配置比较容易，但 xetex 生成 pdf 的速度比较慢， **我在这里告诉大家，不要因为 ox-latex-chinese 的方便而限制了自己的思路！**
 
 ![img](./snapshots/ox-latex-chinese.gif)
 
-## 下载并安装 Texlive<a id="orgheadline9"></a>
 
-### 下载 Tex Live ISO 镜像<a id="orgheadline2"></a>
+<a id="orgc936b53"></a>
 
-TeX Live 支持 Linux，Windows 以及 MacOX 多种操作系统，安装方式多种多样，由于我这里网络不太稳定，所以我选择通过 Tex Live ISO 来安装 Tex Live （文件大小大约3G），
+## 下载并安装 Texlive
 
-Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 Linux 镜像站点都同时包含 CTAN。大家可以在<http://www.cnbeta.com/articles/194758.htm>
-列出的镜像站点中寻找 “CTAN” 子目录，两个比较好用的 CTAN 镜像：
+
+<a id="orgec78820"></a>
+
+### 下载 Tex Live ISO 镜像
+
+TeX Live 支持 Linux，Windows 以及 MacOX 多种操作系统，安装方式多种多样， 由于我这里网络不太稳定，所以我选择通过 Tex Live ISO 来安装 Tex Live （文件大小大约3G），
+
+Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 Linux 镜像站点都同时包含 CTAN。 大家可以在<http://www.cnbeta.com/articles/194758.htm>列出的镜像站点中寻找 “CTAN” 子目录，两个比较好用的 CTAN 镜像：
 
 1.  中国科学技术大学镜像：<http://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/>
 2.  清华大学镜像：<http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/>
 
-### 挂载已经下载的 ISO 镜像<a id="orgheadline3"></a>
 
-1.  下载安装 [wincdemu](http://wincdemu.sysprogs.org/), winmount 或者 DAEMON Tools，这类工具可以将 ISO 文件挂载到一个盘符，比直接解压缩快速方便。
+<a id="org33b1e44"></a>
+
+### 挂载已经下载的 ISO 镜像
+
+1.  下载安装 [wincdemu](http://wincdemu.sysprogs.org/), winmount 或者 DAEMON Tools， 这类工具可以将 ISO 文件挂载到一个盘符，比直接解压缩快速方便。
 2.  将 ISO 镜像挂载到 “Z:\\”
 
-### 运行安装程序<a id="orgheadline4"></a>
+
+<a id="org1eef640"></a>
+
+### 运行安装程序
 
 1.  打开 “Z” 盘。
 2.  **完全安装** 请运行 “install-tl.bat”，这种方式比较省心，但很占空间。
@@ -58,13 +72,19 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
 
 注：安装的时候建议关闭杀毒软件。
 
-### 设置安装参数<a id="orgheadline5"></a>
 
-运行安装程序后，会弹出一个窗口（比较丑陋）用于设置安装选项，在 “选择安装方案” 选项中选择 “scheme-small”，其它选项不变，然后开始安装（安装大概需要 5 分钟左右）。
+<a id="org0f38022"></a>
+
+### 设置安装参数
+
+运行安装程序后，会弹出一个窗口（比较丑陋）用于设置安装选项，在 “选择安装方案” 选项中选择 “scheme-small”， 其它选项不变，然后开始安装（安装大概需要 5 分钟左右）。
 
 ![img](./snapshots/advanced-install.gif)
 
-### 安装所需要的 Latex 宏包<a id="orgheadline8"></a>
+
+<a id="orgd9344a5"></a>
+
+### 安装所需要的 Latex 宏包
 
 1.  第一种方式：使用 Tex Live 管理器图形界面安装
 
@@ -87,22 +107,33 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
 
             tlmgr install collection-langcjk collection-langchinese ctex ctex-faq bibtex8 environ trimspaces zhnumber wrapfig capt-of latexmk dvipng dvisvgm
 
-## 安装并配置 ox-latex-chinese<a id="orgheadline12"></a>
 
-### 安装<a id="orgheadline10"></a>
+<a id="org67d0566"></a>
+
+## 安装并配置 ox-latex-chinese
+
+
+<a id="orga97ed7e"></a>
+
+### 安装
 
 1.  配置 melpa: <http://melpa.org/#/getting-started>
 2.  M-x package-install RET ox-latex-chinese RET
 
-### 配置<a id="orgheadline11"></a>
+
+<a id="orgae8e008"></a>
+
+### 配置
 
     (require 'ox-latex-chinese)
     (oxlc/toggle-ox-latex-chinese t)
 
-注：用户可以使用 \`oxlc/insert-configure-template' 在当前 buffer 的光标处插入一段 emacs 配置代码, 这段 elisp 代码的功能和 ox-latex-chinese 的功能
-**基本一样** , 用户可以把这段代码做为自己的 org 中文配置来进一步调整优化。
+注：用户可以使用 \`oxlc/insert-configure-template' 在当前 buffer 的光标处 插入一段 emacs 配置代码, 这段 elisp 代码的功能和 ox-latex-chinese 的功能 **基本一样** , 用户可以把这段代码做为自己的 org 中文配置来进一步调整优化。
 
-## 设置 LaTeX 片断预览功能<a id="orgheadline13"></a>
+
+<a id="orgd9eb6ec"></a>
+
+## 设置 LaTeX 片断预览功能
 
 1.  确保 emacs 可以显示 png 文件，具体参考：<ftp://ftp.gnu.org/gnu/emacs/windows/README>
 2.  安装 [imagemagick](http://www.imagemagick.org/) 和 [ghostscript](http://ghostscript.com/)
@@ -115,15 +146,24 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
         (setq org-format-latex-options
               (plist-put org-format-latex-options :html-scale 2.5)) ;调整 HTML 文件中 LaTeX 图像的大小
 
-## 常见错误排查和解决<a id="orgheadline18"></a>
 
-### 中文目录下的 org 文件无法转换为 pdf 文件<a id="orgheadline14"></a>
+<a id="org128755e"></a>
+
+## 常见错误排查和解决
+
+
+<a id="orgf3d577d"></a>
+
+### 中文目录下的 org 文件无法转换为 pdf 文件
 
 这个问题可以使用 latexmk 命令配合 "%b.tex" (仅仅使用文件名，而不是文件的绝对路径) 来规避，比如：
 
     (setq oxlc/org-latex-commands '("latexmk -xelatex -gg -pdf %b.tex"))
 
-### 缺少必要的 Latex 宏包<a id="orgheadline17"></a>
+
+<a id="org189de36"></a>
+
+### 缺少必要的 Latex 宏包
 
 1.  表现形式
 
