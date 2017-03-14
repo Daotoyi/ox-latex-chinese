@@ -123,6 +123,14 @@
 ;; 插入一段 emacs 配置代码, 这段 elisp 代码的功能和 ox-latex-chinese 的功能
 ;; *基本一样* , 用户可以把这段代码做为自己的 org 中文配置来进一步调整优化。
 
+;; ** 禁用自动设置 LaTeX 字体功能
+;; ox-latex-chinese 默认会搜索当前系统 *可用* 的字体，来自动设置 LaTeX 字体，
+;; 但字体显示效果未必好，用户可以使用下面的代码来禁用这个功能。
+
+;; #+BEGIN_EXAMPLE
+;; (setq oxlc/org-latex-fonts nil)
+;; #+END_EXAMPLE
+
 ;; ** 设置 LaTeX 片断预览功能
 ;; 1. 确保 emacs 可以显示 png 文件，具体参考：ftp://ftp.gnu.org/gnu/emacs/windows/README
 ;; 2. 安装 [[http://www.imagemagick.org/][imagemagick]] 和 [[http://ghostscript.com/][ghostscript]]
@@ -381,30 +389,32 @@ to latex."
 
 (defun oxlc/generate-latex-fonts-setting ()
   "Generate a latex fonts setting."
-  (let ((mainfont (oxlc/get-available-font 'mainfont))
-        (cjkmainfont-italic (oxlc/get-available-font 'CJKmainfont-italic))
-        (cjkmainfont (oxlc/get-available-font 'CJKmainfont))
-        (cjksansfont (oxlc/get-available-font 'CJKsansfont))
-        (cjkmonofont (oxlc/get-available-font 'CJKmonofont)))
-    (concat "\n"
-            (when mainfont (format "\\setmainfont{%s}\n" mainfont))
-            (when cjkmainfont
-              (if cjkmainfont-italic
-                  (format "\\setCJKmainfont[ItalicFont={%s}]{%s}\n" cjkmainfont-italic cjkmainfont)
-                (format "\\setCJKmainfont{%s}\n" cjkmainfont)))
-            (when cjksansfont (format "\\setCJKsansfont{%s}\n" cjksansfont))
-            (when cjkmonofont (format "\\setCJKmonofont{%s}\n" cjkmonofont)))))
+  (when oxlc/org-latex-fonts
+    (let ((mainfont (oxlc/get-available-font 'mainfont))
+          (cjkmainfont-italic (oxlc/get-available-font 'CJKmainfont-italic))
+          (cjkmainfont (oxlc/get-available-font 'CJKmainfont))
+          (cjksansfont (oxlc/get-available-font 'CJKsansfont))
+          (cjkmonofont (oxlc/get-available-font 'CJKmonofont)))
+      (concat "\n"
+              (when mainfont (format "\\setmainfont{%s}\n" mainfont))
+              (when cjkmainfont
+                (if cjkmainfont-italic
+                    (format "\\setCJKmainfont[ItalicFont={%s}]{%s}\n" cjkmainfont-italic cjkmainfont)
+                  (format "\\setCJKmainfont{%s}\n" cjkmainfont)))
+              (when cjksansfont (format "\\setCJKsansfont{%s}\n" cjksansfont))
+              (when cjkmonofont (format "\\setCJKmonofont{%s}\n" cjkmonofont))))))
 
 (defun oxlc/get-available-font (fontclass)
-  (let* ((fonts-list (cdr (assoc fontclass oxlc/org-latex-fonts)))
-         (font (car (cl-remove-if
-                     #'(lambda (fontname)
-                         (not (oxlc/font-available-p fontname)))
-                     fonts-list))))
-    (unless font
-      (message (format "org-latex-chinese: Emacs can't find an available (%s) font for latex, ignore!"
-                       (symbol-name fontclass))))
-    font))
+  (when oxlc/org-latex-fonts
+    (let* ((fonts-list (cdr (assoc fontclass oxlc/org-latex-fonts)))
+           (font (car (cl-remove-if
+                       #'(lambda (fontname)
+                           (not (oxlc/font-available-p fontname)))
+                       fonts-list))))
+      (unless font
+        (message (format "org-latex-chinese: Emacs can't find an available (%s) font for latex, ignore!"
+                         (symbol-name fontclass))))
+      font)))
 
 (defun oxlc/font-available-p (fontname)
   (mapcar #'(lambda (x)
