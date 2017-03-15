@@ -1,27 +1,27 @@
-- [README](#orgb1a2204)
-  - [简介](#orgd3d0dc1)
-  - [下载并安装 Texlive](#org09ce570)
-    - [下载 Tex Live ISO 镜像](#org184bcec)
-    - [挂载已经下载的 ISO 镜像](#org3b032cc)
-    - [运行安装程序](#org54e6e2f)
-    - [设置安装参数](#org18feeaf)
-    - [安装所需要的 Latex 宏包](#org8432762)
-  - [安装并配置 ox-latex-chinese](#orge6c938a)
-    - [安装](#org607270d)
-    - [配置](#orgd3fb322)
-  - [禁用自动设置 LaTeX 字体功能](#org978d1cd)
-  - [设置 LaTeX 片断预览功能](#orge64331c)
-  - [常见错误排查和解决](#org04a002a)
-    - [中文目录下的 org 文件无法转换为 pdf 文件](#orgc86578c)
-    - [缺少必要的 Latex 宏包](#org4793b7e)
+- [README](#orga5f04ff)
+  - [简介](#orga6f82f9)
+  - [下载并安装 Texlive](#org99b0091)
+    - [下载 Tex Live ISO 镜像](#org3f957b1)
+    - [挂载已经下载的 ISO 镜像](#org6666e61)
+    - [运行安装程序](#org574418c)
+    - [设置安装参数](#org8337ac3)
+    - [安装所需要的 Latex 宏包](#org3a6ece4)
+  - [安装并配置 ox-latex-chinese](#org205612b)
+    - [安装](#org0a9f571)
+    - [配置](#orgbe74918)
+  - [禁用自动设置 LaTeX 字体功能](#orge3c1024)
+  - [设置 LaTeX 片断预览功能](#org3280a6d)
+  - [常见错误排查和解决](#org5f28b51)
+    - [中文目录下的 org 文件无法转换为 pdf 文件](#orgec8105a)
+    - [缺少必要的 Latex 宏包](#org2e31c8a)
 
 
-<a id="orgb1a2204"></a>
+<a id="orga5f04ff"></a>
 
 # README
 
 
-<a id="orgd3d0dc1"></a>
+<a id="orga6f82f9"></a>
 
 ## 简介
 
@@ -38,12 +38,12 @@ ox-latex-chinese 是一个 org-mode 工具，它可以帮助 org-mode 中文用�
 ![img](./snapshots/ox-latex-chinese.gif)
 
 
-<a id="org09ce570"></a>
+<a id="org99b0091"></a>
 
 ## 下载并安装 Texlive
 
 
-<a id="org184bcec"></a>
+<a id="org3f957b1"></a>
 
 ### 下载 Tex Live ISO 镜像
 
@@ -55,18 +55,15 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
 2.  清华大学镜像：<http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/>
 
 
-<a id="org3b032cc"></a>
+<a id="org6666e61"></a>
 
 ### 挂载已经下载的 ISO 镜像
 
-1.  下载安装 [wincdemu](http://wincdemu.sysprogs.org/), winmount 或者 DAEMON Tools，
-
-这类工具可以将 ISO 文件挂载到一个盘符，比直接解压缩快速方便。
-
-1.  将 ISO 镜像挂载到 “Z:\\”
+1.  下载安装 [wincdemu](http://wincdemu.sysprogs.org/), winmount 或者 DAEMON Tools， 这类工具可以将 ISO 文件挂载到一个盘符，比直接解压缩快速方便。
+2.  将 ISO 镜像挂载到 “Z:\\”
 
 
-<a id="org54e6e2f"></a>
+<a id="org574418c"></a>
 
 ### 运行安装程序
 
@@ -77,7 +74,7 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
 注：安装的时候建议关闭杀毒软件。
 
 
-<a id="org18feeaf"></a>
+<a id="org8337ac3"></a>
 
 ### 设置安装参数
 
@@ -86,7 +83,7 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
 ![img](./snapshots/advanced-install.gif)
 
 
-<a id="org8432762"></a>
+<a id="org3a6ece4"></a>
 
 ### 安装所需要的 Latex 宏包
 
@@ -103,23 +100,21 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
     1.  运行 window CMD
     2.  设置 Latex 宏包仓库
 
-        tlmgr option repository Z:
+            tlmgr option repository Z:
+    3.  更新设置
 
-    1.  更新设置
+            tlmgr update -all
+    4.  安装所需宏包
 
-        tlmgr update -all
-
-    1.  安装所需宏包
-
-        tlmgr install collection-langcjk collection-langchinese ctex ctex-faq bibtex8 environ trimspaces zhnumber wrapfig capt-of latexmk dvipng dvisvgm
+            tlmgr install collection-langcjk collection-langchinese ctex ctex-faq bibtex8 environ trimspaces zhnumber wrapfig capt-of latexmk dvipng dvisvgm
 
 
-<a id="orge6c938a"></a>
+<a id="org205612b"></a>
 
 ## 安装并配置 ox-latex-chinese
 
 
-<a id="org607270d"></a>
+<a id="org0a9f571"></a>
 
 ### 安装
 
@@ -127,7 +122,7 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
 2.  M-x package-install RET ox-latex-chinese RET
 
 
-<a id="orgd3fb322"></a>
+<a id="orgbe74918"></a>
 
 ### 配置
 
@@ -137,7 +132,7 @@ Tex Live 主站访问速度很慢，建议同学们使用国内镜像，许多 L
 注：用户可以使用 \`oxlc/insert-configure-template' 在当前 buffer 的光标处 插入一段 emacs 配置代码, 这段 elisp 代码的功能和 ox-latex-chinese 的功能 **基本一样** , 用户可以把这段代码做为自己的 org 中文配置来进一步调整优化。
 
 
-<a id="org978d1cd"></a>
+<a id="orge3c1024"></a>
 
 ## 禁用自动设置 LaTeX 字体功能
 
@@ -146,7 +141,7 @@ ox-latex-chinese 默认会搜索当前系统 **可用** 的字体，来自动设
     (setq oxlc/org-latex-fonts nil)
 
 
-<a id="orge64331c"></a>
+<a id="org3280a6d"></a>
 
 ## 设置 LaTeX 片断预览功能
 
@@ -154,20 +149,20 @@ ox-latex-chinese 默认会搜索当前系统 **可用** 的字体，来自动设
 2.  安装 [imagemagick](http://www.imagemagick.org/) 和 [ghostscript](http://ghostscript.com/)
 3.  设置 emacs
 
-    (setq org-latex-create-formula-image-program 'dvipng)    ;速度很快，但 *默认* 不支持中文
-    (setq org-latex-create-formula-image-program 'imagemagick)  ;速度较慢，但支持中文
-    (setq org-format-latex-options
-    (plist-put org-format-latex-options :scale 2.0))      ;调整 LaTeX 预览图片的大小
-    (setq org-format-latex-options
-    (plist-put org-format-latex-options :html-scale 2.5)) ;调整 HTML 文件中 LaTeX 图像的大小
+        ;; (setq org-latex-create-formula-image-program 'dvipng)    ;速度很快，但 *默认* 不支持中文
+        (setq org-latex-create-formula-image-program 'imagemagick)  ;速度较慢，但支持中文
+        (setq org-format-latex-options
+              (plist-put org-format-latex-options :scale 2.0))      ;调整 LaTeX 预览图片的大小
+        (setq org-format-latex-options
+              (plist-put org-format-latex-options :html-scale 2.5)) ;调整 HTML 文件中 LaTeX 图像的大小
 
 
-<a id="org04a002a"></a>
+<a id="org5f28b51"></a>
 
 ## 常见错误排查和解决
 
 
-<a id="orgc86578c"></a>
+<a id="orgec8105a"></a>
 
 ### 中文目录下的 org 文件无法转换为 pdf 文件
 
@@ -176,7 +171,7 @@ ox-latex-chinese 默认会搜索当前系统 **可用** 的字体，来自动设
     (setq oxlc/org-latex-commands '("latexmk -xelatex -gg -pdf %b.tex"))
 
 
-<a id="org4793b7e"></a>
+<a id="org2e31c8a"></a>
 
 ### 缺少必要的 Latex 宏包
 
@@ -184,35 +179,34 @@ ox-latex-chinese 默认会搜索当前系统 **可用** 的字体，来自动设
 
     1.  message buffer中有类似输出
 
-        Processing LaTeX file ./export-org-file-to-pdf-with-ctex.tex...
-        PDF file ./export-org-file-to-pdf-with-ctex.pdf wasn't produced
+            Processing LaTeX file ./export-org-file-to-pdf-with-ctex.tex...
+            PDF file ./export-org-file-to-pdf-with-ctex.pdf wasn't produced
+    2.  **Org PDF LaTeX Output** buffer 中有类似输出
 
-    1.  **Org PDF LaTeX Output** buffer 中有类似输出
+            ...
 
-        ...
+            (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)
+            (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+            (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+            (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+            (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty))))
+            (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty))
+            (c:/texlive/2015/texmf-dist/tex/latex/tools/longtable.sty)
 
-        (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)
-        (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-        (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
-        (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-        (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty))))
-        (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty))
-        (c:/texlive/2015/texmf-dist/tex/latex/tools/longtable.sty)
+            ! LaTeX Error: File `wrapfig.sty' not found.
 
-        ! LaTeX Error: File `wrapfig.sty' not found.
+            Type X to quit or <RETURN> to proceed,
+            or enter new name. (Default extension: sty)
 
-        Type X to quit or <RETURN> to proceed,
-        or enter new name. (Default extension: sty)
+            Enter file name:
+            ! Emergency stop.
+            <read *>
 
-        Enter file name:
-        ! Emergency stop.
-        <read *>
+            l.8 \usepackage
+                           {rotating}^^M
+            No pages of output.
 
-        l.8 \usepackage
-        {rotating}^^M
-        No pages of output.
-
-        ...
+            ...
 
 2.  解决方式
 
@@ -222,11 +216,10 @@ ox-latex-chinese 默认会搜索当前系统 **可用** 的字体，来自动设
 
     1.  直接试着安装 “wrapfig” 宏包
 
-        tlmgr option repository Z:
-        tlmgr update -all
-        tlmgr install wrapfig
-
-    1.  如果没有找到 “wrapfig” 宏包，你需要找到哪个宏包包含 wrapfig.sty，一个简单的方式就是用 google 搜索 wrapfig.sty，一般会有相关的信息。
+            tlmgr option repository Z:
+            tlmgr update -all
+            tlmgr install wrapfig
+    2.  如果没有找到 “wrapfig” 宏包，你需要找到哪个宏包包含 wrapfig.sty，一个简单的方式就是用 google 搜索 wrapfig.sty，一般会有相关的信息。
 
 
 Converted from ox-latex-chinese.el by [el2org](https://github.com/tumashu/el2org) .
