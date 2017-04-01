@@ -252,7 +252,7 @@ Note: this option *only* useful for org-mode (version < 9.0) ."
      :image-output-type "png"
      :image-size-adjust (1.0 . 1.0)
      :latex-compiler ("latex -interaction nonstopmode -output-directory %o %f")
-     :image-converter ("dvipng -fg %F -bg %B -D %D -T tight -o %b.png %f"))
+     :image-converter ("dvipng -fg %F -bg %B -D %D -T tight -o %O %f"))
     (dvisvgm
      :programs ("latex" "dvisvgm" "gs")
      :description "dvi > svg"
@@ -262,7 +262,7 @@ Note: this option *only* useful for org-mode (version < 9.0) ."
      :image-output-type "svg"
      :image-size-adjust (1.7 . 1.5)
      :latex-compiler ("latex -interaction nonstopmode -output-directory %o %f")
-     :image-converter ("dvisvgm %f -n -b min -c %S -o %b.svg"))
+     :image-converter ("dvisvgm %f -n -b min -c %S -o %O"))
     (dvisvgm-xelatex
      :programs ("latex" "dvisvgm" "gs")
      :description "dvi > svg"
@@ -272,7 +272,7 @@ Note: this option *only* useful for org-mode (version < 9.0) ."
      :image-output-type "svg"
      :image-size-adjust (1.7 . 1.5)
      :latex-compiler ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
-     :image-converter ("dvisvgm %f -n -b min -c %S -o %b.svg"))
+     :image-converter ("dvisvgm %f -n -b min -c %S -o %O"))
     (imagemagick
      :programs ("latex" "convert" "gs")
      :description "pdf > png"
@@ -284,7 +284,7 @@ Note: this option *only* useful for org-mode (version < 9.0) ."
      :image-size-adjust (1.0 . 1.0)
      :latex-compiler ("xelatex -interaction nonstopmode -output-directory %o %f")
      :image-converter
-     ("convert -density %S -trim -antialias %f -quality 100 %b.png")))
+     ("convert -density %D -trim -antialias %f -quality 100 %O")))
   "Please see the info of `org-preview-latex-process-alist', when `oxlc/org-latex-chinese-enable'
 set to t, its value will override the value of `org-preview-latex-process-alist' before exporting
 to latex.
