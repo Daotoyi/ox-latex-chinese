@@ -459,8 +459,10 @@ to latex."
               (oxlc/insert-setq-sexp 'org-latex-pdf-process
                                      oxlc/org-latex-commands)
               (oxlc/insert-setq-sexp 'org-latex-packages-alist
-                                     (cons (oxlc/generate-latex-fonts-setting)
-                                           oxlc/org-latex-packages-alist))
+                                     (if (oxlc/generate-latex-fonts-setting)
+                                         (cons (oxlc/generate-latex-fonts-setting)
+                                               oxlc/org-latex-packages-alist)
+                                       oxlc/org-latex-packages-alist))
               (unless (string< (org-version) "9.0")
                 (oxlc/insert-setq-sexp 'org-preview-latex-default-process)
                 (oxlc/insert-setq-sexp 'org-preview-latex-process-alist))
