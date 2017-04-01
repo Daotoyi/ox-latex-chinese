@@ -476,8 +476,10 @@ to latex."
              (org-latex-classes oxlc/org-latex-classes)
              (org-latex-default-packages-alist oxlc/org-latex-default-packages-alist)
              (org-latex-packages-alist
-              (cons (oxlc/generate-latex-fonts-setting)
-                    oxlc/org-latex-packages-alist))
+              (if (oxlc/generate-latex-fonts-setting)
+                  (cons (oxlc/generate-latex-fonts-setting)
+                        oxlc/org-latex-packages-alist)
+                oxlc/org-latex-packages-alist))
              (org-latex-pdf-process oxlc/org-latex-commands)
              (org-preview-latex-default-process oxlc/org-preview-latex-default-process)
              (org-preview-latex-process-alist oxlc/org-preview-latex-process-alist))
